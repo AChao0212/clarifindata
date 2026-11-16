@@ -26,7 +26,7 @@ from ingestion.publish import publish_crawl
 log = logging.getLogger(__name__)
 
 BASE_URL = "https://rate.bot.com.tw/xrt/flcsv/0"
-USER_AGENT = "Mozilla/5.0 (clarifindata data crawler; +https://github.com/clarifindata)"
+USER_AGENT = "Mozilla/5.0 (clarifindata data crawler; +https://clarifindata.com; support@clarifindata.com)"
 
 # Require at least 18 of the 19 published currencies before storing a day.
 MIN_CURRENCIES = 18

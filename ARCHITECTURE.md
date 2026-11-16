@@ -22,8 +22,6 @@ The Kafka consumer that normalizes rows and writes dataset tables is not include
 
 Postgres dataset tables, migrations, API handlers and account management belong to the separate API service and are not included. The Compose stack starts Postgres so the included trading-calendar helper can query it. `schema.sql` creates only `taiwan_stock_trading_date`; official dates must be loaded separately before calendar-based collection. Historical completeness lookups can query dataset tables supplied by the API service and retain their configured absolute floor when that lookup fails.
 
-The scripts under `scripts/` include a second submission path: they POST rows to ingestion endpoints on a separately running API service. This repository does not implement those endpoints. These scripts therefore need that service even though the Kafka-based crawler example does not.
-
 ## Local services
 
 `docker-compose.yml` supplies Postgres 16, Kafka 3.8.0 and MinIO. Published ports bind to `127.0.0.1`. Postgres and MinIO use named volumes. Kafka is a single local broker with automatically created topics and no configured persistent volume. Redis is not required by this subset and is not started.

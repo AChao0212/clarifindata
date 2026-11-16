@@ -25,7 +25,7 @@ from ingestion.publish import publish_crawl
 log = logging.getLogger(__name__)
 
 BASE_URL = "https://www.twse.com.tw/rwd/zh/fund/BFI82U"
-USER_AGENT = "Mozilla/5.0 (clarifindata data crawler; +https://github.com/clarifindata)"
+USER_AGENT = "Mozilla/5.0 (clarifindata data crawler; +https://clarifindata.com; support@clarifindata.com)"
 
 
 def _decimal(s: Any) -> Decimal | None:

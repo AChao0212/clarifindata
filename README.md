@@ -1,6 +1,6 @@
 # clarifindata collection pipeline
 
-This repository contains a runnable collection and publishing subset of [clarifindata](https://clarifindata.com), a free, not-for-profit Taiwan market-data API. Every account receives the same data and a limit of 3,000 requests per hour. The service collects data from public web pages and open data published by TWSE, TPEx, TAIFEX, MOPS, the central bank and other sources. This repository shows how selected collectors parse responses, archive raw payloads and publish rows; it does not contain the hosted API service.
+This repository contains a runnable collection and publishing subset of [clarifindata](https://clarifindata.com), a free, not-for-profit Taiwan market-data API. Every account receives the same data and a limit of 3,000 requests per hour. The service collects data from public web pages and open data published by TWSE, TPEx, TAIFEX, MOPS, the Bank of Taiwan and other sources. This repository shows how selected collectors parse responses, archive raw payloads and publish rows; it does not contain the hosted API service.
 
 ## Files
 
@@ -28,13 +28,6 @@ ingestion/
     twse_per.py               TWSE valuation ratios.
     twse_total_inst.py        TWSE institutional trading totals.
     twse_weighted_index.py    TWSE weighted-index history.
-scripts/
-  macro_extra.py              Additional public macroeconomic series.
-  mops_bulk_financials.py     MOPS bulk financial statements.
-  mops_direct.py              MOPS quarterly financial statements.
-  mops_dividend_worker.py     MOPS dividend records.
-  mopsfin_quarterly.py        Quarterly financial tables from MOPS.
-  taifex_contract_info.py     TAIFEX contract specifications.
 schema.sql                   Minimal trading-calendar table.
 docker-compose.yml           Local Postgres, Kafka and MinIO services.
 requirements.txt             Python dependencies for this subset.
@@ -89,11 +82,9 @@ Settings can also be read from a local `.env` file. The trading-calendar helper 
 
 Telegram alerts are optional. The harness reads `BOT_TOKEN` and `BOT_CHAT_ID` from `~/.secret/telegram.txt` at runtime if that file exists. `--no-alert` or `CFD_NO_ALERT=1` suppresses alerts without suppressing collection failures.
 
-Some scripts submit rows to a separately running API rather than Kafka. Their default address is `http://localhost:8000`; they read an administrative bearer token from `~/.secret/cfd_admin_token`, or accept a token argument where provided. The dividend script also needs a company-code file. Their ingestion endpoints, the Kafka-to-Postgres consumer, dataset schemas and the API server are not included. See each script's command-line help and [ARCHITECTURE.md](ARCHITECTURE.md) before running it.
-
 ## Sources and use
 
-The collectors in this repository use public pages and open data from TWSE, TPEx, MOPS, TAIFEX, the Bank of Taiwan and FRED. Each collector keeps its source URL in the code, and published messages carry it where the source provides one.
+The collectors in this repository use public pages and open data from TWSE, TPEx and the Bank of Taiwan. Each collector keeps its source URL in the code, and published messages carry it where the source provides one.
 
 clarifindata has no licence agreement with these institutions. The collected data is unofficial. Source data remains subject to its rights holders' terms and is not licensed by this repository's software licence. Rights holders can request removal at [support@clarifindata.com](mailto:support@clarifindata.com); requests are handled within 7 days.
 

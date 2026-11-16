@@ -24,7 +24,7 @@ from ingestion.publish import publish_crawl
 log = logging.getLogger(__name__)
 
 BASE_URL = "https://www.twse.com.tw/rwd/zh/afterTrading/BWIBBU_d"
-USER_AGENT = "Mozilla/5.0 (clarifindata data crawler; +https://github.com/clarifindata)"
+USER_AGENT = "Mozilla/5.0 (clarifindata data crawler; +https://clarifindata.com; support@clarifindata.com)"
 # Minimum row counts distinguish incomplete captures from valid daily data.
 FLOOR_PRE_2012 = 500
 FLOOR = 700
